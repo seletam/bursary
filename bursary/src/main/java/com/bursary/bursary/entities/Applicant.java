@@ -25,14 +25,17 @@ import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import com.bursary.bursary.enumerator.GENDER;
-
+/*
+ * Seleta M. Mootwane
+ * 2018-08-23
+ */
 @Entity
 @EntityListeners(AuditingEntityListener.class)
 public class Applicant implements Serializable {
 	private static final long serialVersionUID = -2673662513912668135L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private Long id;
 	@NotBlank
 	private String firstName;

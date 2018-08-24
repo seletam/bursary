@@ -6,7 +6,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
+/*
+ * Seleta M. Mootwane
+ * 2018-08-23
+ */
 @Entity
 public class Subject implements Serializable {
 	private static final long serialVersionUID = 7556426575986690489L;

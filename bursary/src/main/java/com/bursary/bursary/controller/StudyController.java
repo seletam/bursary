@@ -14,7 +14,10 @@ import org.springframework.web.bind.annotation.RestController;
 import com.bursary.bursary.entities.Study;
 import com.bursary.bursary.services.StudyService;
 import com.bursary.bursary.utils.ConstantsResource;
-
+/*
+ * Seleta M. Mootwane
+ * 2018-08-23
+ */
 @RestController
 @RequestMapping(value = ConstantsResource.SITE_BASE_URI)
 public class StudyController {

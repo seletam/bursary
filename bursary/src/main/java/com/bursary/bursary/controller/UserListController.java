@@ -13,7 +13,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.bursary.bursary.entities.Applicant;
 import com.bursary.bursary.services.ApplicantService;
-
+/*
+ * Seleta M. Mootwane
+ * 2018-08-23
+ */
 @Scope (value = "session")
 @Component (value = "userList")
 public class UserListController {

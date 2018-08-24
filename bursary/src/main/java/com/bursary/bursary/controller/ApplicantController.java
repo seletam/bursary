@@ -20,7 +20,10 @@ import org.springframework.web.bind.annotation.RestController;
 import com.bursary.bursary.entities.Applicant;
 import com.bursary.bursary.services.ApplicantService;
 import com.bursary.bursary.utils.ConstantsResource;
-
+/*
+ * Seleta M. Mootwane
+ * 2018-08-23
+ */
 @RestController
 @RequestMapping(ConstantsResource.SITE_BASE_URI)
 public class ApplicantController {

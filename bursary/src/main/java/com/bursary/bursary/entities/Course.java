@@ -1,5 +1,8 @@
 package com.bursary.bursary.entities;
-
+/*
+ * Seleta M. Mootwane
+ * 2018-08-23
+ */
 public class Course {
 	private String name;
 	private Integer chapterCount;
