@@ -1,1 +1,2 @@
-# bursary
+# Bursary
+Seleta exploring Java
