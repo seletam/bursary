@@ -7,6 +7,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.ui.Model;
 
 @EnableAutoConfiguration
 @SpringBootApplication
@@ -21,6 +22,7 @@ public class BursaryApplication {
 	public static void main(String[] args) {
 		// log.info("test");
 		SpringApplication.run(BursaryApplication.class, args);
+		//System.out.println(model);
 	}
 
 //	public void run(ApplicationArguments applicationArguments) {
@@ -34,4 +36,6 @@ public class BursaryApplication {
 //		
 //		emailService.sendMessage(emailResource);
 //	}
+	
+	
 }

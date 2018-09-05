@@ -2,7 +2,6 @@ package com.bursary.bursary.entities;
 
 import java.io.Serializable;
 import java.util.Set;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -11,7 +10,10 @@ import javax.persistence.ManyToMany;
 
 import com.bursary.bursary.enumerator.QUALIFICATION_STATUS;
 import com.bursary.bursary.enumerator.SCHOOL_TYPE;
-
+/*
+ * Seleta M. Mootwane
+ * 2018-08-23
+ */
 @Entity
 public class Qualification implements Serializable {
 	private static final long serialVersionUID = -6834848533187766894L;

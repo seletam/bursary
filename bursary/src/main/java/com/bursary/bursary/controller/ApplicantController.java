@@ -31,12 +31,17 @@ public class ApplicantController {
 	ApplicantService applicantService;
 
 	// get all
+//	@GetMapping(value = ConstantsResource.APPLICANTS_BASE_URI)
+//	@ResponseStatus(HttpStatus.OK)
+//	public List<Applicant> findAll() {
+//		return this.applicantService.getAllUser();
+//	}
+	
 	@GetMapping(value = ConstantsResource.APPLICANTS_BASE_URI)
-	@ResponseStatus(HttpStatus.OK)
+	@ResponseStatus(HttpStatus.CREATED)
 	public List<Applicant> findAll() {
 		return this.applicantService.getAllUser();
 	}
-
 	// get 1
 	@GetMapping(value = ConstantsResource.APPLICANTS_BASE_URI + "/{id}")
 	@ResponseStatus(HttpStatus.CREATED)
@@ -78,7 +83,7 @@ public class ApplicantController {
 		app.setFieldOfStudy(applicant.getFieldOfStudy());
 		app.setQualification(applicant.getQualification());
 		app.setAddress(applicant.getAddress());
-
+		app.setReferenceNo(applicant.OTP(3));
 		Applicant updateApplicant = applicantService.add(app);
 		return ResponseEntity.ok().body(updateApplicant);
 

@@ -27,7 +27,7 @@ public class ApplicantController {
 	@Autowired
 	ApplicantService applicantService;
 
-	// get all
+	//get all
 	@GetMapping(value = ConstantsResource.APPLICANTS_BASE_URI)
 	@ResponseStatus(HttpStatus.OK)
 	public List<Applicant> findAll() {
@@ -45,19 +45,19 @@ public class ApplicantController {
 		return ResponseEntity.ok().body(applicant);
 	}
 
-	// get users by field of study
+	//get users by field of study
 	@GetMapping(value = ConstantsResource.APPLICANTS_BASE_URI + '/' + ConstantsResource.FIELD_OF_STUDY_BASE_URI + "/{id}")
 	public List<Applicant> getApplicantsByStudyField(@PathVariable final Long id) {
 		return applicantService.findByStudies(id);
 	}
 
-	// save
+	//save
 	@PostMapping(value = ConstantsResource.CREATE_APPLICANT_URI)
 	public Applicant create(@Valid @RequestBody final Applicant applicant) {
 		return this.applicantService.add(applicant);
 	}
 
-	// update
+	//update
 	@PutMapping(value = ConstantsResource.APPLICANTS_BASE_URI + '/' + ConstantsResource.UPDATE_APPLICANT_URI + "/{id}")
 	public ResponseEntity<Applicant> update(@PathVariable(value = "id") final Long id,
 			@RequestBody Applicant applicant) {
@@ -81,7 +81,7 @@ public class ApplicantController {
 
 	}
 
-	// delete
+	//delete
 	@DeleteMapping(value = ConstantsResource.APPLICANTS_BASE_URI + '/' + ConstantsResource.DELETE_APPLICANT_URI
 			+ "/{id}")
 	public ResponseEntity<Applicant> delete(@PathVariable(value = "id") Long id) {

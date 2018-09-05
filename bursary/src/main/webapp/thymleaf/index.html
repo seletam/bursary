@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:th="http://www.thymeleaf.org"
+	layout:decorate="~{fragments/layout}">
+<head>
+<title>Index</title>
+<script src="/webjars/jquery/3.1.1/jquery.min.js"></script>
+<script src="/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js"></script>
+<link rel="stylesheet"
+	href="/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css" />
+</head>
+<body>
+	<div class="container">
+		<div class="col-md-12" layout:fragment="content">
+			<h1>Bursary Application</h1>
+			<p>This is an unsecured page, but you can access the secured
+				pages after authenticating.</p>
+			<ul>
+				<li>Go to the <a href="/bursary/applicants/"
+					th:href="@{/bursary/applicants/}">secured pages</a></li>
+			</ul>
+		</div>
+		<div class="col-md-12"></div>
+	</div>
+</body>
+</html>

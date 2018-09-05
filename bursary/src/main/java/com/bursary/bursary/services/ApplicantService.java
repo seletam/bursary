@@ -1,5 +1,6 @@
 package com.bursary.bursary.services;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,5 +37,16 @@ public class ApplicantService {
 	
 	public Applicant deleteByStudies(Long studyId) {
 		return applicantRepository.deleteByStudy(new Study(studyId));
+	}
+	
+	public HashMap<String, Applicant> getApplicantions() {
+		HashMap<String, Applicant> noOfApplications = new HashMap<>();
+		List<Applicant> applicantionList = applicantRepository.findAll();
+		for (Applicant applicant : applicantionList) {
+			//getTotalApplicants
+			//get
+		}
+		return noOfApplications;
+		
 	}
 }

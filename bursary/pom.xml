@@ -99,30 +99,17 @@
 			<version>1.5.5</version>
 		</dependency>
 		<dependency>
-			<groupId>org.springframework.ldap</groupId>
-			<artifactId>spring-ldap-core</artifactId>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-thymeleaf</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>org.springframework.security</groupId>
-			<artifactId>spring-security-ldap</artifactId>
+			<groupId>nz.net.ultraq.thymeleaf</groupId>
+			<artifactId>thymeleaf-layout-dialect</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>com.unboundid</groupId>
-			<artifactId>unboundid-ldapsdk</artifactId>
+			<groupId>org.thymeleaf.extras</groupId>
+			<artifactId>thymeleaf-extras-java8time</artifactId>
 		</dependency>
-		<dependency>
-    <groupId>com.sun.faces</groupId>
-    <artifactId>jsf-api</artifactId>
-    <version>2.2.8</version>
-    <scope>provided</scope>
-</dependency>
-<dependency>
-    <groupId>com.sun.faces</groupId>
-    <artifactId>jsf-impl</artifactId>
-    <version>2.2.8</version>
-    <scope>compile</scope>
-    <optional>true</optional>
-</dependency>
 	</dependencies>
 
 	<dependencyManagement>
@@ -145,6 +132,5 @@
 			</plugin>
 		</plugins>
 	</build>
-
 
 </project>

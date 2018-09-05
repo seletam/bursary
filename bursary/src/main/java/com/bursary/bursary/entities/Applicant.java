@@ -3,6 +3,7 @@ package com.bursary.bursary.entities;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.Random;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -19,23 +20,24 @@ import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotBlank;
-
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import com.bursary.bursary.enumerator.GENDER;
+
 /*
  * Seleta M. Mootwane
  * 2018-08-23
  */
+
 @Entity
 @EntityListeners(AuditingEntityListener.class)
 public class Applicant implements Serializable {
 	private static final long serialVersionUID = -2673662513912668135L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	@NotBlank
 	private String firstName;
@@ -54,7 +56,7 @@ public class Applicant implements Serializable {
 	@Temporal(TemporalType.TIMESTAMP)
 	@CreatedDate
 	private Date createdDate;
-	private String referenceNo;
+	private char[] referenceNo;
 
 	@Temporal(TemporalType.TIMESTAMP)
 	@LastModifiedDate
@@ -71,7 +73,7 @@ public class Applicant implements Serializable {
 	}
 
 	public Applicant(Long id, @NotBlank String firstName, String middleName, String lastName, GENDER gender, Date dob,
-			String email, Study study, String referenceNo, Date createdDate, Date modifiedDate, Set<Address> address,
+			String email, Study study, char[] referenceNo, Date createdDate, Date modifiedDate, Set<Address> address,
 			Set<Qualification> qualification) {
 		this.id = id;
 		this.firstName = firstName;
@@ -168,6 +170,14 @@ public class Applicant implements Serializable {
 		this.qualification = qualification;
 	}
 
+	public char[] getReferenceNo() {
+		return referenceNo;
+	}
+
+	public void setReferenceNo(char[] referenceNo) {
+		this.referenceNo = referenceNo;
+	}
+
 	public Date getCreatedDate() {
 		return createdDate;
 	}
@@ -184,15 +194,31 @@ public class Applicant implements Serializable {
 		this.modifiedDate = modifiedDate;
 	}
 
+	public char[] OTP(int len)
+    {
+        System.out.println("Generating OTP using random() : ");
+        System.out.print("You OTP is : ");
+ 
+        // Using numeric values
+        String numbers = "0123456789";
+ 
+        // Using random method
+        Random rndm_method = new Random();
+ 
+        char[] otp = new char[len];
+ 
+        for (int i = 0; i < len; i++)
+        {
+            // Use of charAt() method : to get character value
+            // Use of nextInt() as it is scanning the value as int
+            otp[i] =
+             numbers.charAt(rndm_method.nextInt(numbers.length()));
+        }
+        return otp;
+    }
+	
 	@Override
 	public String toString() {
 		return "Applicant [getId()=" + getId() + ", getQualification()=" + getQualification() + "]";
-	}
-
-	public String getReferenceNo() {
-		return referenceNo;
-	}
-	public void setReferenceNo(String referenceNo) {
-		this.referenceNo = referenceNo;
 	}
 }

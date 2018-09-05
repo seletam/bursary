@@ -1,12 +1,14 @@
 package com.bursary.bursary.entities;
 
 import java.io.Serializable;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
+/*
+ * Seleta M. Mootwane
+ * 2018-08-23
+ */
 @Entity
 public class Study implements Serializable {
 	private static final long serialVersionUID = 8431202895362832156L;

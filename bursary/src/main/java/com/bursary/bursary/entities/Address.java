@@ -1,16 +1,17 @@
 package com.bursary.bursary.entities;
 
 import java.io.Serializable;
-
 import javax.persistence.Entity;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
 import com.bursary.bursary.enumerator.ADDRESS_TYPE;
 import com.bursary.bursary.enumerator.PROVINCE;
-
+/*
+ * Seleta M. Mootwane
+ * 2018-08-23
+ */
 @Entity
 public class Address implements Serializable{
 	
