@@ -18,7 +18,6 @@ import com.bursary.bursary.enumerator.SCHOOL_TYPE;
 public class Qualification implements Serializable {
 	private static final long serialVersionUID = -6834848533187766894L;
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String name;
 	private SCHOOL_TYPE school_type;

@@ -95,7 +95,7 @@
         <li class="nav-item active">
           <a class="nav-link" href="index.html">
             <i class="fas fa-fw fa-tachometer-alt"></i>
-            <span>Dashboard</span>
+            <span th:text="${pageTitle}"></span>
           </a>
         </li>
         <li class="nav-item dropdown">
@@ -221,38 +221,28 @@
           <div class="card mb-3">
             <div class="card-header">
               <i class="fas fa-table"></i>
-              Data Table Example</div>
+              Application List</div>
             <div class="card-body">
-              <div class="table-responsive">
+              <div class="table-responsive" th:if="${not #lists.isEmpty(cp)}">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                   <thead>
                     <tr>
-                      <th>Name</th>
-                      <th>Position</th>
-                      <th>Office</th>
-                      <th>Age</th>
-                      <th>Start date</th>
-                      <th>Salary</th>
+                      <th>Names</th>
+                      <th>Gender</th>
+                      <th>DoB</th>
+                      <th>Email</th>
+                      <th>Qualification(s)</th>
+                      <th>Created date</th>
                     </tr>
                   </thead>
-                  <tfoot>
-                    <tr>
-                      <th>Name</th>
-                      <th>Position</th>
-                      <th>Office</th>
-                      <th>Age</th>
-                      <th>Start date</th>
-                      <th>Salary</th>
-                    </tr>
-                  </tfoot>
                   <tbody>
-                    <tr th:each="applications : ${applications}">
-                      <td th:text="${applications.id}"></td>
-                      <td th:text="${applications.id}"></td>
-                      <td th:text="${applications.id}"></td>
-                      <td th:text="${applications.id}"></td>
-                      <td th:text="${applications.id}"></td>
-                      <td th:text="${applications.id}"></td>
+                    <tr th:each="cp1 : ${cp}">
+                      <td th:text="${cp1.firstName} + ' ' + ${cp1.lastName}"></td>
+                      <td th:text="${cp1.gender}"></td>
+                      <td th:text="${cp1.dob}"></td>
+                      <td th:text="${cp1.email}"></td>
+                      <td><p th:each="cp2 : ${cp1.qualification}" th:text="${cp2.name}"/></td>
+                      <td th:text="${cp1.createdDate}"></td>
                     </tr>
                   </tbody>
                 </table>
@@ -260,7 +250,6 @@
             </div>
             <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
           </div>
-
         </div>
         <!-- /.container-fluid -->
 

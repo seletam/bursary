@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Bursary Application</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<h3>Application form</h3>
+	<form th:action="@{/addApplication}" th:object="${applicant}"
+		method="post">
+		<table>
+			<tr>
+				<td>First Name:</td>
+				<td><input type="text" th:field="*{firstName}" /></td>
+				<td>Title error message</td>
+			</tr>
+			<tr>
+				<td>Middle Name:</td>
+				<td><input type="text" th:field="*{middleName}" /></td>
+				<td>Content error message</td>
+			</tr>
+			<tr>
+				<td>Email:</td>
+				<td><input type="text" th:field="*{email}" /></td>
+				<td>Content error message</td>
+			</tr>
+			<tr>
+				<td>Last Name:</td>
+				<td><input type="text" th:field="*{lastName}" /></td>
+				<td>Content error message</td>
+			</tr>
+			<tr>
+				<td>Address:</td>
+				<td><select>
+						<option
+							th:each="addresstype : ${T(com.bursary.bursary.enumerator.ADDRESS_TYPE).values()}"
+							th:value="${addresstype}" th:text="${addresstype}"></option>
+				</select></td>
+				<td>Content error message</td>
+			</tr>
+			<tr>
+				<td>Gender:</td>
+				<td><select th:field="*{gender}">
+						<option
+							th:each="gender : ${T(com.bursary.bursary.enumerator.GENDER).values()}"
+							th:value="${gender}" th:text="${gender.gender}"></option>
+				</select></td>
+				<td>Content error message</td>
+			</tr>
+			<tr>
+				<td>DoB:</td>
+				<td><input type="date" th:field="*{dob}" /></td>
+				<td>Content error message</td>
+			</tr>
+			<tr>
+				<td>Province:</td>
+				<td><select>
+						<option
+							th:each="province : ${T(com.bursary.bursary.enumerator.PROVINCE).values()}"
+							th:value="${province}" th:text="${province.ProvinceName}"></option>
+				</select></td>
+				<td>Content error message</td>
+			</tr>
+
+			<tr>
+				<td>Area of study:</td>
+				<td><select th:field="*{gender}">
+						<option
+							th:each="studyarea : ${T(com.bursary.bursary.enumerator.AREA_OF_STUDY).values()}"
+							th:value="${studyarea}" th:text="${studyarea.StudyField}"></option>
+				</select></td>
+				<td>Content error message</td>
+			</tr>
+			<tr>
+				<td><h3>Qualifications</h3></td>
+			</tr>
+			<tr>
+				<td>Qualification Name:</td>
+				<td><input type="text" /></td>
+				<td>Content error message</td>
+			</tr>
+				<tr>
+				<td>School:</td>
+				<td><select>
+						<option
+							th:each="school : ${T(com.bursary.bursary.enumerator.SCHOOL_TYPE).values()}"
+							th:value="${school}" th:text="${school}"></option>
+				</select></td>
+				<td>Content error message</td>
+			</tr>
+			<tr>
+				<td>Institution Name:</td>
+				<td><input type="text" /></td>
+				<td>Content error message</td>
+			</tr>
+			<tr>
+				<td>Status:</td>
+				<td><select>
+						<option
+							th:each="status : ${T(com.bursary.bursary.enumerator.QUALIFICATION_STATUS).values()}"
+							th:value="${status}" th:text="${status.status}"></option>
+				</select></td>
+				<td>Content error message</td>
+			</tr>
+			<tr>
+				<td><button type="submit" th:value="Save">Submit post</button></td>
+			</tr>
+		</table>
+	</form>
+</body>
+</html>

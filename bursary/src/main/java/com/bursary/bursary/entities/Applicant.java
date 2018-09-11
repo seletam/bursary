@@ -23,6 +23,7 @@ import javax.validation.constraints.NotBlank;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import com.bursary.bursary.enumerator.GENDER;
 
@@ -45,7 +46,7 @@ public class Applicant implements Serializable {
 	private String lastName;
 	@Enumerated
 	private GENDER gender;
-	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Column(name = "birth_date")
 	private Date dob;
 	private String email;
@@ -145,21 +146,19 @@ public class Applicant implements Serializable {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	public Study getStudy() {
+		return study;
+	}
 
+	public void setStudy(Study study) {
+		this.study = study;
+	}
 	public Set<Address> getAddress() {
 		return address;
 	}
 
 	public void setAddress(Set<Address> address) {
 		this.address = address;
-	}
-
-	public Study getFieldOfStudy() {
-		return study;
-	}
-
-	public void setFieldOfStudy(Study study) {
-		this.study = study;
 	}
 
 	public Set<Qualification> getQualification() {

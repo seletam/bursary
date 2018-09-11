@@ -80,7 +80,7 @@ public class ApplicantController {
 		app.setDob(applicant.getDob());
 		app.setGender(applicant.getGender());
 		app.setEmail(applicant.getEmail());
-		app.setFieldOfStudy(applicant.getFieldOfStudy());
+		app.setStudy(applicant.getStudy());
 		app.setQualification(applicant.getQualification());
 		app.setAddress(applicant.getAddress());
 		app.setReferenceNo(applicant.OTP(3));
