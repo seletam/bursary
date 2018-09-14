@@ -214,7 +214,7 @@
             <div class="card-body">
               <canvas id="myAreaChart" width="100%" height="30"></canvas>
             </div>
-            <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+            <div class="card-footer small text-muted"></div>
           </div>
 
           <!-- DataTables Example -->
@@ -233,6 +233,7 @@
                       <th>Email</th>
                       <th>Qualification(s)</th>
                       <th>Created date</th>
+                      <th>Action</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -243,12 +244,13 @@
                       <td th:text="${cp1.email}"></td>
                       <td><p th:each="cp2 : ${cp1.qualification}" th:text="${cp2.name}"/></td>
                       <td th:text="${cp1.createdDate}"></td>
+                      <td th:href="${cp1.id}"><a href="result.html">View</a></td>
                     </tr>
                   </tbody>
                 </table>
               </div>
             </div>
-            <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+            <div class="card-footer small text-muted"></div>
           </div>
         </div>
         <!-- /.container-fluid -->

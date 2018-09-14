@@ -1,13 +1,11 @@
 package com.bursary.bursary.entities;
 
-import java.io.Serializable;
 import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
-
 import com.bursary.bursary.enumerator.QUALIFICATION_STATUS;
 import com.bursary.bursary.enumerator.SCHOOL_TYPE;
 /*
@@ -15,14 +13,14 @@ import com.bursary.bursary.enumerator.SCHOOL_TYPE;
  * 2018-08-23
  */
 @Entity
-public class Qualification implements Serializable {
-	private static final long serialVersionUID = -6834848533187766894L;
+public class Qualification  {
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String name;
 	private SCHOOL_TYPE school_type;
 	private String institution;
-	private QUALIFICATION_STATUS qUALIFICATION_STATUS;
+	private QUALIFICATION_STATUS QUALIFICATION_STATUS;
 	
 	@ManyToMany
 	private Set<Subject> subjects;
@@ -31,11 +29,11 @@ public class Qualification implements Serializable {
 		
 	}
 	
-	public Qualification(Long id, String name, String institution, QUALIFICATION_STATUS qUALIFICATION_STATUS, Set<Subject> subjects, SCHOOL_TYPE school_type) {
+	public Qualification(Long id, String name, String institution, QUALIFICATION_STATUS QUALIFICATION_STATUS, Set<Subject> subjects, SCHOOL_TYPE school_type) {
 		this.id = id;
 		this.name = name;
 		this.institution = institution;
-		this.qUALIFICATION_STATUS = qUALIFICATION_STATUS;
+		this.QUALIFICATION_STATUS = QUALIFICATION_STATUS;
 		this.subjects = subjects;
 		this.school_type = school_type;
 	}
@@ -71,11 +69,11 @@ public class Qualification implements Serializable {
 	}
 
 	public QUALIFICATION_STATUS getStatus() {
-		return qUALIFICATION_STATUS;
+		return QUALIFICATION_STATUS;
 	}
 
-	public void setStatus(QUALIFICATION_STATUS qUALIFICATION_STATUS) {
-		this.qUALIFICATION_STATUS = qUALIFICATION_STATUS;
+	public void setStatus(QUALIFICATION_STATUS QUALIFICATION_STATUS) {
+		this.QUALIFICATION_STATUS = QUALIFICATION_STATUS;
 	}
 
 	public SCHOOL_TYPE getSchool_type() {

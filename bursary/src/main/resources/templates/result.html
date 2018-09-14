@@ -6,9 +6,17 @@
 </head>
 <body>
 	<h3>View Applicant</h3>
-	<h4>Title:</h4>
-	<p th:text="${firstName}" />
-	<h4>Content:</h4>
-	<p th:text="${middleName}" />
+	<h4>First Name:</h4>
+	<p th:text="${applicantDetails.firstName}" />
+	<h4>Middle Name:</h4>
+	<p th:text="${applicantDetails.middleName}" />
+	<h4>Middle Name:</h4>
+	<p th:text="${applicantDetails.lastName}" />
+	<h4>Middle Name:</h4>
+	<p th:text="${applicantDetails.dob}" />
+	<h4>Middle Name:</h4>
+	<p th:text="${applicantDetails.email}" />
+	<h4>Middle Name:</h4>
+	<p th:text="${applicantDetails.referenceNo}" />
 </body>
 </html>

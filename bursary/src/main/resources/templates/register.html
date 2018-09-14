@@ -6,8 +6,7 @@
 </head>
 <body>
 	<h3>Application form</h3>
-	<form th:action="@{/addApplication}" th:object="${applicant}"
-		method="post">
+	<form th:action="@{/save}" th:object="${applicant}" method="post">
 		<table>
 			<tr>
 				<td>First Name:</td>
@@ -75,11 +74,11 @@
 				<td><h3>Qualifications</h3></td>
 			</tr>
 			<tr>
-				<td>Qualification Name:</td>
-				<td><input type="text" /></td>
+				<td th:object="${qualification}">Qualification Name:</td>
+				<td><input type="text" th:field="${qualification.name}"/></td>
 				<td>Content error message</td>
 			</tr>
-				<tr>
+			<tr>
 				<td>School:</td>
 				<td><select>
 						<option
@@ -90,7 +89,7 @@
 			</tr>
 			<tr>
 				<td>Institution Name:</td>
-				<td><input type="text" /></td>
+				<td><input type="text" th:field="${qualification.institution}"/></td>
 				<td>Content error message</td>
 			</tr>
 			<tr>
