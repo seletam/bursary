@@ -1,2 +1,2 @@
-# Bursary
+# Spring boot
 Seleta exploring Java
