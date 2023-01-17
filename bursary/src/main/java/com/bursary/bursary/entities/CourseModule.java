@@ -10,15 +10,15 @@ import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 
-
 @Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Study implements Serializable {
-	private static final long serialVersionUID = 8431202895362832156L;
+public class CourseModule implements Serializable {
+	private static final long serialVersionUID = 7556426575986690489L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String name;
+	private double score;
 }
