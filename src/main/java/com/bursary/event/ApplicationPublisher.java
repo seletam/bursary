@@ -1,7 +1,10 @@
 package com.bursary.event;
 
+import com.bursary.entities.Applicant;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Component;
+
+import java.util.concurrent.atomic.AtomicReference;
 
 @Component
 public class ApplicationPublisher<T> {
@@ -13,7 +16,7 @@ public class ApplicationPublisher<T> {
         this.publisher = publisher;
     }
 
-    public void publishApplicationEvent(T t) {
+    public void publishApplicationEvent(AtomicReference<Applicant> t) {
         publisher.publishEvent(t);
     }
 

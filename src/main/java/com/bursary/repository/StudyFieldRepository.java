@@ -7,6 +7,6 @@ import org.springframework.stereotype.Repository;
 import java.util.UUID;
 
 @Repository
-public interface StudyFieldRepository extends BursaryRepository<Study, UUID> {
+public interface StudyFieldRepository extends CassandraRepository<Study, UUID> {
 
 }

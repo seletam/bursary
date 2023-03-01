@@ -1,21 +1,17 @@
 package com.bursary.entities;
 
-import lombok.*;
-import org.springframework.data.cassandra.core.mapping.PrimaryKey;
-import org.springframework.data.cassandra.core.mapping.PrimaryKeyColumn;
+import lombok.Getter;
 import org.springframework.data.cassandra.core.mapping.Table;
 
-import java.io.Serializable;
 import java.util.UUID;
 
 @Table
-@Data
-public class CourseModule {
-	@PrimaryKey
-	@Setter(AccessLevel.NONE)
-	@PrimaryKeyColumn(
-			name = "id")
-	private UUID id;
-	private String name;
+@Getter
+public class CourseModule extends BaseModal {
 	private double score;
+
+	public CourseModule(UUID id, String name, double score) {
+		super(id, name);
+		this.score = score;
+	}
 }

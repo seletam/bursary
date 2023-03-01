@@ -1,36 +1,34 @@
 package com.bursary.state;
 
-import com.bursary.entities.Applicant;
-import com.bursary.event.ApplicationPublisher;
-import com.bursary.repository.ApplicantRepository;
+import com.bursary.entities.Application;
+import com.bursary.repository.ApplicationRepository;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Component;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationEventPublisher;
+import org.springframework.stereotype.Service;
 
 
 @Slf4j
-@Component
-public class ApplicationInterviewState implements ApplicationState {
-    private ApplicantRepository applicantRepository;
-    private ApplicationPublisher<Applicant> publisher;
+@Service("InterviewState")
+public class ApplicationInterviewState implements ApplicationStatusHandler {
+    private final ApplicationRepository applicationRepository;
+    private final ApplicationEventPublisher publisher;
 
-    public ApplicationInterviewState(ApplicantRepository applicantRepository, ApplicationPublisher<Applicant> publisher) {
-        this.applicantRepository = applicantRepository;
+    @Autowired
+    public ApplicationInterviewState(ApplicationRepository applicationRepository, ApplicationEventPublisher publisher) {
+        this.applicationRepository = applicationRepository;
         this.publisher = publisher;
     }
 
-    public ApplicationInterviewState() {
-
-    }
-
     /**
-     * @param applicant
+     * @param application
      * @return
      */
     @Override
-    public Applicant review(Applicant applicant) {
-        Applicant app = applicantRepository.save(applicant);
+    public Application review(Application application) {
+        Application app = applicationRepository.insert(application);
         log.info("applicant " + app);
-        publisher.publishApplicationEvent(app);
+        publisher.publishEvent(app);
         return app;
     }
 }

@@ -2,6 +2,8 @@ package com.bursary.entities;
 
 import com.bursary.entities.objects.ADDRESS_TYPE;
 import com.bursary.entities.objects.PROVINCE;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.cassandra.core.mapping.CassandraType;
@@ -18,6 +20,7 @@ public class Address {
 	@Id
 	@Setter(AccessLevel.NONE)
 	@PrimaryKey
+	@GeneratedValue(strategy = GenerationType.UUID)
 	private Long id;
 	@CassandraType(type = TEXT)
 	private ADDRESS_TYPE address_type;

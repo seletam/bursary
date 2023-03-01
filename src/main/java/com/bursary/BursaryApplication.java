@@ -1,28 +1,35 @@
 package com.bursary;
 
 import com.bursary.entities.Applicant;
+import com.bursary.entities.Application;
+import com.bursary.entities.Status;
+import com.bursary.entities.Study;
 import com.bursary.entities.objects.GENDER;
-import com.bursary.state.ApplicationStateFactory;
-import com.bursary.state.ApplicationStateType;
+import com.bursary.services.BursaryApplicationContext;
+import com.bursary.state.ApplicationStatus;
+import com.datastax.oss.driver.api.core.uuid.Uuids;
+import com.github.javafaker.Faker;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
+import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.data.cassandra.repository.config.EnableCassandraRepositories;
 
-import java.util.Arrays;
-import java.util.Date;
-import java.util.UUID;
+import java.util.Locale;
+import java.util.Random;
 
+@EnableCaching
 @EnableCassandraRepositories
-@SpringBootApplication
+@SpringBootApplication(exclude={DataSourceAutoConfiguration.class})
 public class BursaryApplication implements CommandLineRunner {
 
-	private final ApplicationStateFactory applicationStateFactory;
+	private final BursaryApplicationContext bursaryApplicationContext;
 
 	@Autowired
-	public BursaryApplication(ApplicationStateFactory applicationStateFactory) {
-		this.applicationStateFactory = applicationStateFactory;
+	public BursaryApplication(BursaryApplicationContext bursaryApplicationContext) {
+		this.bursaryApplicationContext = bursaryApplicationContext;
 	}
 
 	public static void main(String[] args) {
@@ -31,57 +38,35 @@ public class BursaryApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) {
-		Applicant applicant = Applicant.builder()
-				.dob(new Date())
-				.email("Seletam@gmail.com")
-				.gender(GENDER.MALE).firstName("Seleta")
-				.lastName("Mootwane")
-				.referenceNo(UUID.randomUUID().toString())
-				.middleName("Keane")
+		var faker = new Faker(Locale.of("en-ZA", "South Africa"), new Random());
+		var study = Study.studyBuilder()
+				.name(faker.university().name())
+				.build();
+//
+		var applicant = Applicant.applicantBuilder()
+				.dob(faker.date().birthday())
+				.email(faker.name().firstName() + "." + faker.name().lastName() + "@gmail.com")
+				.gender(GENDER.MALE)
+				.firstName(faker.name().firstName())
+				.lastName(faker.name().lastName())
+				.referenceNo(faker.crypto().sha256())
+				.middleName(faker.name().nameWithMiddle())
+				.id(Uuids.timeBased())
+//				.study(study)
 				.build();
 
-		applicationStateFactory.getInstance(ApplicationStateType.CREATION, applicant);
-	}
+		var status = Status.StatusBuilder()
+				.status(ApplicationStatus.CREATED)
+				.approvedBy(faker.name().fullName() + " " + faker.name().lastName())
+				.build();
 
-	public Integer bubbleSearch(int[] arr, int k) {
-
-		Arrays.sort(arr);
-		for (int i = 0; i < arr.length; i++) {
-			for (int j = 0; j < arr.length - i - 1; j++) {
-				if (arr[j] > arr[j + 1]) {
-					int temp = arr[j];
-					arr[j] = arr[j + 1];
-					arr[j + 1] = temp;
-				}
-			}
-		}
-		return arr[k - 1];
-	}
-
-
-
-	public static void quickSort(int[] arr, int low, int high) {
-		if (low < high) {
-			int pi = partition(arr, low, high);
-			quickSort(arr, low, pi - 1);
-			quickSort(arr, pi + 1, high);
-		}
-	}
-
-	public static int partition(int[] arr, int low, int high) {
-		int pivot = arr[high];
-		int i = low - 1;
-		for (int j = low; j < high; j++) {
-			if (arr[j] <= pivot) {
-				i++;
-				int temp = arr[i];
-				arr[i] = arr[j];
-				arr[j] = temp;
-			}
-		}
-		int temp = arr[i + 1];
-		arr[i + 1] = arr[high];
-		arr[high] = temp;
-		return i + 1;
+		var application = Application.ApplicationBuilder()
+//				.gpa(78)
+				.applicant(applicant)
+				.status(status)
+				.build();
+//
+		var exec = bursaryApplicationContext.processApplicationState(application);
+		System.out.println("exec = " + exec);
 	}
 }

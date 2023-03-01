@@ -8,22 +8,19 @@ import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
 
 @Slf4j
-@Service("ShortlistState")
-public class ApplicationShortlistedState implements ApplicationStatusHandler {
+@Service("ACCEPT")
+public class ApplicationAcceptState implements ApplicationStatusHandler {
 
-    private final ApplicationEventPublisher publisher;
     private final ApplicationRepository applicationRepository;
+    private final ApplicationEventPublisher publisher;
 
     @Autowired
-    public ApplicationShortlistedState(ApplicationEventPublisher publisher, ApplicationRepository applicationRepository) {
-        this.publisher = publisher;
+    public ApplicationAcceptState(ApplicationRepository applicationRepository, ApplicationEventPublisher publisher) {
         this.applicationRepository = applicationRepository;
+        this.publisher = publisher;
     }
 
-    /*
-        TODO
-        create automatic behaviour that runs on its own Thread
-     */
+
     @Override
     public Application review(Application application) {
         Application app = applicationRepository.insert(application);
@@ -31,5 +28,4 @@ public class ApplicationShortlistedState implements ApplicationStatusHandler {
         publisher.publishEvent(app);
         return app;
     }
-
 }

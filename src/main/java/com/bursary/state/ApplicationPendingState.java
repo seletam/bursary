@@ -1,12 +1,12 @@
 package com.bursary.state;
 
-import com.bursary.entities.Applicant;
-import com.bursary.event.ApplicationPublisher;
-import com.bursary.repository.ApplicantRepository;
+import com.bursary.entities.Application;
+import com.bursary.entities.Status;
+import com.bursary.repository.ApplicationRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
 import java.util.List;
@@ -16,30 +16,32 @@ import java.util.stream.Collectors;
 
 
 @Slf4j
-@Component
-public class ApplicationPendingState implements ApplicationState {
-
-    private final ApplicationEventPublisher publisher;
-    private final ApplicantRepository applicantRepository;
+@Service("PENDING")
+public class ApplicationPendingState implements ApplicationStatusHandler {
+    private ApplicationRepository applicationRepository;
+    private ApplicationEventPublisher publisher;
 
     @Autowired
-    public ApplicationPendingState(ApplicationEventPublisher publisher, ApplicantRepository applicantRepository) {
-
+    public ApplicationPendingState(ApplicationEventPublisher publisher, ApplicationRepository applicationRepository) {
         this.publisher = publisher;
-        this.applicantRepository = applicantRepository;
+        this.applicationRepository = applicationRepository;
     }
 
-    @Override
-    public Applicant review(Applicant applicant) {
-        Applicant app = applicantRepository.save(applicant);
-        log.info("applicant " + app);
+    public ApplicationPendingState() {}
 
-//        applicationId and Status
-        Map<UUID, List<ApplicationStatus>> applicationStatus = Arrays.asList(app)
+    @Override
+    public Application review(Application application) {
+        application.setStatus(Status.StatusBuilder().status(ApplicationStatus.PENDING).build());
+        Application savedApplication = applicationRepository.insert(application);
+        log.info("Application saved: {}", savedApplication);
+
+        // Publish application status update event
+        ApplicationStatusEvent applicationStatusEvent = new ApplicationStatusEvent(application, savedApplication.getId(), ApplicationStatus.PENDING);
+        Map<UUID, List<ApplicationStatusEvent>> applicationStatuses = Arrays.asList(applicationStatusEvent)
                 .stream()
-                .map(app1 -> new ApplicationStatus(null, app1.getId(), ApplicationStateType.PENDING))
-                .collect(Collectors.groupingBy(ApplicationStatus::id));
-        publisher.publishEvent(applicationStatus);
-        return app;
+                .collect(Collectors.groupingBy(ApplicationStatusEvent::id));
+        publisher.publishEvent(applicationStatuses);
+
+        return savedApplication;
     }
 }
