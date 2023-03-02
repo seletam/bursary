@@ -22,7 +22,7 @@ public class Status {
     @PrimaryKey
     @Setter(AccessLevel.NONE)
     @PrimaryKeyColumn(name = "id", ordinal = 0,type = PrimaryKeyType.PARTITIONED)
-    @GeneratedValue(strategy = GenerationType.UUID)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
 
     @Column

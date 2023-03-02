@@ -1,5 +1,6 @@
 package com.bursary.entities;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -15,6 +16,8 @@ import org.springframework.data.cassandra.core.mapping.Table;
 
 import java.util.UUID;
 
+import static org.springframework.data.cassandra.core.cql.PrimaryKeyType.CLUSTERED;
+
 @Table
 @Data
 @Builder(builderMethodName = "ApplicationBuilder")
@@ -22,12 +25,13 @@ public class Application {
     @Id
     @PrimaryKey
     @Setter(AccessLevel.NONE)
-    @PrimaryKeyColumn(name = "id", ordinal = 0,type = PrimaryKeyType.PARTITIONED)
-    @GeneratedValue(strategy = GenerationType.UUID)
+    @PrimaryKeyColumn(name = "id", type = PrimaryKeyType.PARTITIONED)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
     @Transient
     private Applicant applicant;
     @Transient
     private Status status;
-//    private int gpa;
+    @Transient
+    private Double gpa;
 }

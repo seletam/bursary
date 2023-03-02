@@ -16,7 +16,7 @@ public class BaseModal {
     @PrimaryKey
     @Setter(AccessLevel.NONE)
     @PrimaryKeyColumn(name = "id")
-    @GeneratedValue(strategy = GenerationType.UUID)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
     private String name;
 }

@@ -27,8 +27,8 @@ public class Applicant {
 	@Id
 	@PrimaryKey
 	@Setter(AccessLevel.NONE)
-	@PrimaryKeyColumn(name = "id", ordinal = 0,type = PrimaryKeyType.PARTITIONED)
-	@GeneratedValue(strategy = GenerationType.UUID)
+	@PrimaryKeyColumn(name = "id", type = PrimaryKeyType.PARTITIONED)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private UUID id;
 	private String firstName;
 	private String middleName;

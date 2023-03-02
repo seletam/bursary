@@ -38,7 +38,7 @@ public class BursaryApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) {
-		var faker = new Faker(Locale.of("en-ZA", "South Africa"), new Random());
+		var faker = new Faker(Locale.getDefault(), new Random());
 		var study = Study.studyBuilder()
 				.name(faker.university().name())
 				.build();

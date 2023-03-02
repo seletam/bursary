@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository;
 import java.util.UUID;
 
 @Repository
-public interface ApplicationRepository extends BursaryRepository<Application, UUID> {
+public interface ApplicationRepository extends CassandraRepository<Application, UUID> {
     // Query to fetch all applications
     @Query("SELECT * FROM application")
     Slice<Application> findAllApplications(Pageable pageable);

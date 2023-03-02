@@ -20,7 +20,7 @@ public class Address {
 	@Id
 	@Setter(AccessLevel.NONE)
 	@PrimaryKey
-	@GeneratedValue(strategy = GenerationType.UUID)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	@CassandraType(type = TEXT)
 	private ADDRESS_TYPE address_type;

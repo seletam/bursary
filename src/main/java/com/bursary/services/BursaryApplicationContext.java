@@ -9,6 +9,7 @@ import io.micrometer.observation.ObservationRegistry;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.ApplicationEventPublisher;
+import org.springframework.data.cassandra.core.CassandraOperations;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
@@ -24,6 +25,8 @@ public class BursaryApplicationContext {
 
     private final ApplicationRepository applicationRepository;
     private final ApplicationEventPublisher publisher;
+
+    private final CassandraOperations cassandraTemplate;
     private final ObservationRegistry observationRegistry;
 
     @Timed(extraTags = {"region", "us-east-1"})
@@ -32,7 +35,7 @@ public class BursaryApplicationContext {
 //        log.info("Application Process Started. {}", application);
 
         Map<ApplicationStatus, ApplicationStatusHandler> applicationStatusHandlerHashMap = new HashMap<>();
-        applicationStatusHandlerHashMap.put(CREATED, new ApplicationCreateState(applicationRepository, publisher));
+        applicationStatusHandlerHashMap.put(CREATED, new ApplicationCreateState(applicationRepository, cassandraTemplate, publisher));
         applicationStatusHandlerHashMap.put(PENDING, new ApplicationPendingState(publisher, applicationRepository));
         applicationStatusHandlerHashMap.put(UNDER_REVIEW, new ApplicationPendingState(publisher, applicationRepository));
         applicationStatusHandlerHashMap.put(SHORTLISTED, new ApplicationShortlistedState(publisher, applicationRepository));

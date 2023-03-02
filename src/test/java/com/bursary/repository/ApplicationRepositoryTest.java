@@ -25,6 +25,9 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+/**
+ *
+ */
 @ExtendWith(MockitoExtension.class)
 public class ApplicationRepositoryTest {
 
@@ -35,7 +38,7 @@ public class ApplicationRepositoryTest {
     private ApplicationRepository applicationRepository;
 
     @Test
-    void testFindByStatusWithPagination() {
+    public void testFindByStatusWithPagination() {
         // Set up test data
 //        List<Application> applications = Arrays.asList(
 //                Application.builder().id(UUID.randomUUID()).applicant(Applicant.applicantBuilder().firstName("John").lastName("Doe").build()).status(Status.builder().status(ApplicationStatus.CREATED).build()).build(),
