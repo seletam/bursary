@@ -1,14 +1,6 @@
 package com.bursary.services;
 
-import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
-
-import com.bursary.entities.Study;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import com.bursary.repository.StudyFieldRepository;
 
 @Service
 public class StudyService {

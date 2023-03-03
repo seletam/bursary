@@ -1,29 +1,16 @@
 package com.bursary.repository;
 
-import com.bursary.entities.Applicant;
-import com.bursary.entities.Application;
-import com.bursary.entities.Status;
-import com.bursary.state.ApplicationStatus;
-import com.datastax.oss.driver.api.querybuilder.QueryBuilder;
-import com.datastax.oss.driver.api.querybuilder.select.Select;
+import com.bursary.repository.repository.ApplicationRepository;
 import org.junit.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.data.cassandra.core.CassandraOperations;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Slice;
-
-import java.util.Arrays;
-import java.util.List;
-import java.util.UUID;
 
 import static com.datastax.oss.driver.api.querybuilder.QueryBuilder.bindMarker;
 import static com.datastax.oss.driver.api.querybuilder.QueryBuilder.literal;
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
 
 /**
  *

@@ -1,8 +1,8 @@
 package com.bursary.services;
 
-import com.bursary.entities.Application;
-import com.bursary.repository.ApplicationRepository;
-import com.bursary.state.*;
+import com.bursary.repository.entities.Application;
+import com.bursary.repository.repository.ApplicationRepository;
+import com.bursary.services.state.*;
 import io.micrometer.core.annotation.Timed;
 import io.micrometer.observation.Observation;
 import io.micrometer.observation.ObservationRegistry;
@@ -14,8 +14,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
-import static com.bursary.state.ApplicationStatus.*;
+import static com.bursary.services.state.ApplicationStatus.*;
 
 
 @Slf4j
@@ -36,8 +37,8 @@ public class BursaryApplicationContext {
 
         Map<ApplicationStatus, ApplicationStatusHandler> applicationStatusHandlerHashMap = new HashMap<>();
         applicationStatusHandlerHashMap.put(CREATED, new ApplicationCreateState(applicationRepository, cassandraTemplate, publisher));
-        applicationStatusHandlerHashMap.put(PENDING, new ApplicationPendingState(publisher, applicationRepository));
-        applicationStatusHandlerHashMap.put(UNDER_REVIEW, new ApplicationPendingState(publisher, applicationRepository));
+        applicationStatusHandlerHashMap.put(PENDING, new ApplicationPendingState(applicationRepository, publisher));
+        applicationStatusHandlerHashMap.put(UNDER_REVIEW, new ApplicationPendingState(applicationRepository, publisher));
         applicationStatusHandlerHashMap.put(SHORTLISTED, new ApplicationShortlistedState(publisher, applicationRepository));
         applicationStatusHandlerHashMap.put(INTERVIEW, new ApplicationInterviewState(applicationRepository, publisher));
         applicationStatusHandlerHashMap.put(OFFER_ISSUED, new ApplicationIssuedState(applicationRepository, publisher));
@@ -46,7 +47,9 @@ public class BursaryApplicationContext {
         applicationStatusHandlerHashMap.put(DECLINED, new ApplicationAcceptState(applicationRepository, publisher));
         applicationStatusHandlerHashMap.put(PENDING_DOCUMENTS, new ApplicationAcceptState(applicationRepository, publisher));
 
-        return Observation.createNotStarted("applicationProcess", this.observationRegistry).observe(() -> getInstance(application, applicationStatusHandlerHashMap));
+        return Observation
+                .createNotStarted("processApplicationState", observationRegistry)
+                .observe(() -> getInstance(application, applicationStatusHandlerHashMap)); // Observation.createNotStarted("applicationProcess", this.observationRegistry).observe(() -> getInstance(application, applicationStatusHandlerHashMap));
     }
 
     private Application getInstance(Application application, Map<ApplicationStatus, ApplicationStatusHandler> statusApplicationStatusHandlerHashMap) {
@@ -61,7 +64,10 @@ public class BursaryApplicationContext {
         return applicationStatusHandler
                 .review(Application
                         .ApplicationBuilder()
-                        .applicant(application.getApplicant())
+                                .id(application.getId())
+//                        .applicant(application.getApplicant())
+                        .gpa(application.getGpa())
+                        .status(application.getStatus())
                         .build());
     }
 }

@@ -10,6 +10,6 @@ public class MetricsService {
 
     @Bean
     MeterRegistryCustomizer<MeterRegistry> metricsCommonTags() {
-        return registry -> registry.config().commonTags("region", "us-east-1");
+        return registry -> registry.config().commonTags("region", "za-east-1");
     }
 }

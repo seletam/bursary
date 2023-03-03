@@ -1,9 +1,9 @@
 //package com.bursary.services;
 //
-//import com.bursary.entities.Applicant;
-//import com.bursary.entities.objects.GENDER;
-//import com.bursary.repository.ApplicantRepository;
-//import com.bursary.utils.exception.ApplicantNotFoundException;
+//import com.bursary.repository.entities.Applicant;
+//import com.bursary.common.constant.GENDER;
+//import com.bursary.repository.repository.ApplicantRepository;
+//import com.bursary.common.exception.utils.ApplicantNotFoundException;
 //import org.junit.jupiter.api.Test;
 //import org.mockito.Mockito;
 //import org.springframework.boot.test.context.SpringBootTest;
