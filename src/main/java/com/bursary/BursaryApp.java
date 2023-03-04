@@ -5,10 +5,11 @@ import com.bursary.entities.Application;
 import com.bursary.entities.Status;
 import com.bursary.entities.Study;
 import com.bursary.entities.objects.GENDER;
-import com.bursary.services.BursaryApplicationContext;
+import com.bursary.services.ApplicationContext;
 import com.bursary.state.ApplicationStatus;
 import com.datastax.oss.driver.api.core.uuid.Uuids;
 import com.github.javafaker.Faker;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -23,17 +24,13 @@ import java.util.Random;
 @EnableCaching
 @EnableCassandraRepositories
 @SpringBootApplication(exclude={DataSourceAutoConfiguration.class})
-public class BursaryApplication implements CommandLineRunner {
+@RequiredArgsConstructor
+public class BursaryApp implements CommandLineRunner {
 
-	private final BursaryApplicationContext bursaryApplicationContext;
-
-	@Autowired
-	public BursaryApplication(BursaryApplicationContext bursaryApplicationContext) {
-		this.bursaryApplicationContext = bursaryApplicationContext;
-	}
+	private final ApplicationContext applicationContext;
 
 	public static void main(String[] args) {
-		SpringApplication.run(BursaryApplication.class, args);
+		SpringApplication.run(BursaryApp.class, args);
 	}
 
 	@Override
@@ -66,7 +63,7 @@ public class BursaryApplication implements CommandLineRunner {
 				.status(status)
 				.build();
 //
-		var exec = bursaryApplicationContext.processApplicationState(application);
+		var exec = applicationContext.processApplicationState(application);
 		System.out.println("exec = " + exec);
 	}
 }

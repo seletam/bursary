@@ -4,10 +4,6 @@
 .gitignore,a\5\a5cc2925ca8258af241be7e5b0381edf30266302
 c
 3src/main/java/com/bursary/utils/SecurityConfig.java,2\0\2090e912bf647ec1b77defb72c0d8f09e13dcf1b
-h
-8src/main/java/com/bursary/services/BursaryApplicant.java,1\6\16e37f7e1dacd007cfabcde1799dd419473ccfc1
-e
-5src/main/java/com/bursary/services/EmailTemplate.java,0\a\0a1da1d7149a99eeab2974b2873787f2e83866c2
 i
 9src/main/java/com/bursary/utils/SecurityAuditorAware.java,2\4\24490519eae3bc8f3a164f0594da45091a993bdd
 b
@@ -46,10 +42,6 @@ k
 ;src/main/java/com/bursary/state/ApplicationStatusEvent.java,6\a\6a108f09d2ad2b5d8a405ca1eb13ba94240cf993
 n
 >src/main/java/com/bursary/repository/StudyFieldRepository.java,a\b\ab312ca26e0ebcacb15ad8354bc23e45af4f751e
-o
-?src/main/java/com/bursary/controller/ApplicationController.java,9\5\95ae1af70ceafa6b53931a77b8e69164c840964c
-m
-=src/main/java/com/bursary/controller/ApplicantController.java,9\5\95930d54fc4fbc9848c732d045e8a9e8c41cf3f4
 p
 @src/main/java/com/bursary/state/ApplicationShortlistedState.java,d\6\d6e68479efffe45d08bc481652482d5fc41e2b4b
 n
@@ -70,10 +62,6 @@ l
 <src/main/java/com/bursary/state/ApplicationPendingState.java,3\6\36ca24ace094d29a0c4c1aa96041bbff6f405424
 t
 Dsrc/main/java/com/bursary/event/ApplicationStatusEventProcessor.java,1\8\18f6004cdcd6eb0f51949f2405c57a75f04442a1
-o
-?src/main/java/com/bursary/services/BursaryApplicantService.java,d\2\d2dee1495ea4fc505d741d77d53a8246c986ce46
-f
-6src/main/java/com/bursary/services/MetricsService.java,4\3\4328dbaeaa12948ea18d0b4889f1f139128a8e8d
 k
 ;src/main/java/com/bursary/state/ApplicationAcceptState.java,f\5\f5fe9c97dea9ea9290b0f237bbd08f200bdaa1da
 l
