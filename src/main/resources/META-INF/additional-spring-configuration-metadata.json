@@ -1,0 +1,8 @@
+{
+  "properties": [
+    {
+      "name": "bursary.min_gpa",
+      "type": "java.lang.String",
+      "description": "Description for bursary.min_gpa."
+  }
+] }

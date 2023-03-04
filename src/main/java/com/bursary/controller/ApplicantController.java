@@ -1,73 +1,47 @@
 package com.bursary.controller;
 
 
-import com.bursary.entities.Applicant;
+import com.bursary.repository.entities.Applicant;
 import com.bursary.services.ApplicantService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/applicant")
+@RequestMapping("/api/v1/applicants")
 @RequiredArgsConstructor
 public class ApplicantController {
 
 	private final ApplicantService applicantService;
 
 	@GetMapping
-	public ResponseEntity<Iterable<Applicant>> findAll() {
-		return  ResponseEntity.ok().body(this.applicantService.getAllUser());
+	public ResponseEntity<List<Applicant>> getAllApplicants() {
+		return  ResponseEntity.ok().body(this.applicantService.findAllApplicants().getContent());
 	}
 
 	@GetMapping("{id}")
-	@ResponseStatus(HttpStatus.CREATED)
-	public ResponseEntity<Applicant> findOne(@PathVariable final UUID id) {
-		Applicant applicant = applicantService.getUser(id);
-		if (applicant == null) {
-			return ResponseEntity.noContent().build();
-		}
-		return ResponseEntity.ok().body(applicant);
+	public ResponseEntity<Applicant> getApplicantById(@PathVariable final UUID id) {
+		return new ResponseEntity<>(applicantService.findApplicantById(id), HttpStatus.OK);
 	}
 
 	@PostMapping
-	public Applicant create(@RequestBody final Applicant applicant) {
-		return this.applicantService.add(applicant);
+	public ResponseEntity<UUID> createApplicant(@Validated @RequestBody final Applicant applicant) {
+		return new ResponseEntity<>(this.applicantService.saveApplicant(applicant), HttpStatus.CREATED);
 	}
 
-	@PutMapping("{id}")
-	public ResponseEntity<Applicant> update(@PathVariable(value = "id") final UUID id,
-			@RequestBody Applicant applicant) {
-		Applicant app = applicantService.getUser(id);
-		if (app == null) {
-			return ResponseEntity.notFound().build();
-		}
-
-		app.setFirstName(applicant.getFirstName());
-		app.setLastName(applicant.getLastName());
-		app.setMiddleName(applicant.getMiddleName());
-		app.setDob(applicant.getDob());
-		app.setGender(applicant.getGender());
-		app.setEmail(applicant.getEmail());
-		app.setQualifications(applicant.getQualifications());
-		app.setAddresses(applicant.getAddresses());
-
-		Applicant updateApplicant = applicantService.add(app);
-		return ResponseEntity.ok().body(updateApplicant);
-
+	@PutMapping
+	public ResponseEntity<UUID> updateApplicant(@Validated @RequestBody final Applicant applicant) {
+		return new ResponseEntity<>(applicantService.saveApplicant(applicant), HttpStatus.OK);
 	}
 
-	@DeleteMapping("{id}")
-	public ResponseEntity<Applicant> delete(@PathVariable(value = "id") UUID id) {
-		Applicant app = applicantService.getUser(id);
-		if (app == null) {
-			return ResponseEntity.notFound().build();
-		}
-
-		applicantService.delete(app);
-		return ResponseEntity.ok().body(app);
+	@DeleteMapping
+	public ResponseEntity<UUID> deleteApplicantById(@Validated @RequestBody final Applicant applicant) {
+		return new ResponseEntity<>(applicantService.deleteApplicant(applicant.getId()), HttpStatus.ACCEPTED);
 	}
 
 }

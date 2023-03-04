@@ -1,9 +1,9 @@
 //package com.bursary.services;
 //
-//import com.bursary.entities.Applicant;
-//import com.bursary.entities.Application;
-//import com.bursary.entities.Status;
-//import com.bursary.repository.ApplicationRepository;
+//import com.bursary.repository.entities.Applicant;
+//import com.bursary.repository.entities.Application;
+//import com.bursary.repository.entities.Status;
+//import com.bursary.repository.repository.ApplicationRepository;
 //import com.bursary.state.*;
 //import org.junit.Test;
 //import org.junit.jupiter.api.BeforeEach;
@@ -16,7 +16,7 @@
 //import java.util.Map;
 //import java.util.UUID;
 //
-//import static com.bursary.state.ApplicationStatus.*;
+//import static com.bursary.services.state.ApplicationStatus.*;
 //import static org.mockito.Mockito.*;
 //
 //@ExtendWith(MockitoExtension.class)

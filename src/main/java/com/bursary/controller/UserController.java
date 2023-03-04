@@ -1,6 +1,5 @@
 package com.bursary.controller;
 
-import com.bursary.entities.Applicant;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;

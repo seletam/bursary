@@ -1,14 +1,6 @@
 package com.bursary.controller;
 
-import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
-
-import com.bursary.entities.Study;
-import com.bursary.services.StudyService;
-import jakarta.websocket.server.PathParam;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController

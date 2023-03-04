@@ -1,5 +1,7 @@
 package com.bursary.exception;
 
+import com.bursary.common.exception.ErrorResponse;
+import com.bursary.common.exception.GlobalExceptionHandler;
 import org.junit.jupiter.api.Test;
 import org.springframework.http.ResponseEntity;
 

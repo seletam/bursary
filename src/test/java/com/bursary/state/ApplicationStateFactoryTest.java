@@ -1,7 +1,5 @@
 package com.bursary.state;
 
-import com.bursary.entities.Applicant;
-
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
