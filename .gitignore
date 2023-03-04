@@ -9,12 +9,14 @@
 .settings
 .springBeans
 .sts4-cache
+.gradle
 
 ### IntelliJ IDEA ###
 .idea
 *.iws
 *.iml
 *.ipr
+
 
 ### NetBeans ###
 /nbproject/private/
@@ -24,3 +26,10 @@
 /nbdist/
 /.nb-gradle/
 /gradle
+
+### VS Code ###
+.idea
+*.iws
+*.iml
+*.ipr
+.gradle
