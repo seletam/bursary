@@ -24,13 +24,12 @@ import java.util.*;
 @EnableCassandraRepositories
 @SpringBootApplication(exclude={DataSourceAutoConfiguration.class})
 @RequiredArgsConstructor
-public class BursaryApplication implements CommandLineRunner {
+public class BursaryApp implements CommandLineRunner {
 
-	private final BursaryApplicationContext bursaryApplicationContext;
-	private final ApplicantService applicantService;
+	private final ApplicationContext applicationContext;
 
 	public static void main(String[] args) {
-		SpringApplication.run(BursaryApplication.class, args);
+		SpringApplication.run(BursaryApp.class, args);
 	}
 
 	@Override
