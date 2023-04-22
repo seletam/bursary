@@ -1,0 +1,3 @@
+[submodule "bursary-modules"]
+	path = bursary-modules
+	url = https://github.com/seletam/bursary-modules.git

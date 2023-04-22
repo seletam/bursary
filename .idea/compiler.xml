@@ -6,17 +6,45 @@
       <profile name="Gradle Imported" enabled="true">
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="false">
-          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.projectlombok/lombok/1.18.26/8f8cf0372abf564913e9796623aac4c8ea44025a/lombok-1.18.26.jar" />
+          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.26/lombok-1.18.26.jar" />
         </processorPath>
         <module name="bursary.main" />
         <module name="bursary.test" />
       </profile>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="common-lib" />
+        <module name="user-service" />
+        <module name="application-service (1) (com.bursary.shortlist)" />
+        <module name="statistics-service" />
+      </profile>
+      <profile name="Gradle Imported" enabled="true">
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="false">
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.projectlombok/lombok/1.18.26/8f8cf0372abf564913e9796623aac4c8ea44025a/lombok-1.18.26.jar" />
+        </processorPath>
+      </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel target="16" />
+    <bytecodeTargetLevel target="19">
+      <module name="application-service" target="17" />
+      <module name="application-service (1) (com.bursary.application)" target="17" />
+      <module name="application-service.main" target="17" />
+      <module name="application-service.test" target="17" />
+      <module name="bursary" target="17" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="bursary" options="-parameters" />
+      <module name="application-service" options="-parameters" />
+      <module name="application-service (1) (com.bursary.application)" options="-parameters" />
+      <module name="application-service (1) (com.bursary.shortlist)" options="-parameters" />
+      <module name="bursary" options="" />
+      <module name="common-lib" options="-parameters" />
+      <module name="shortlisting-service" options="" />
+      <module name="statistics-service" options="-parameters" />
+      <module name="user-service" options="-parameters" />
     </option>
   </component>
 </project>
